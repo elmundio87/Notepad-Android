@@ -10,8 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
+
+    //the edit text that is the notepad
+    EditText mainText = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,30 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        //get the edit text
+        mainText = (EditText)findViewById(R.id.editText);
+
+        //make the keyboard show when the edit text is clicked on... how did we miss this?
+        mainText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(view.getContext().INPUT_METHOD_SERVICE);
+                imm.showSoftInput(mainText, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
+
+    }
+
+
+    private void doSave() {
+        Toast.makeText(this, "This doesn't work yet",Toast.LENGTH_LONG).show();
+
+        //String theText = mainText.getText().toString();
+        //do something with the text like save it...
+
+        //this was to check it was getting the right text... it was :)
+        //Toast.makeText(this, theText,Toast.LENGTH_LONG).show();
     }
 
 
@@ -41,6 +71,10 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_settings:
+                return true;
+
+            case R.id.saveMenu:
+                doSave();
                 return true;
         }
         return super.onOptionsItemSelected(item);
