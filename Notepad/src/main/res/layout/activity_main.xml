@@ -4,4 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" >
+
+    <EditText
+        android:text="Enter text here"
+        android:gravity="top|left"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_gravity="bottom|left|right|top"
+        android:editable="true"
+        android:enabled="true"
+        android:textIsSelectable="true"
+        android:textStyle="normal" />
+</FrameLayout>
