@@ -15,4 +15,4 @@ Have a look at the [open issues](https://github.com/elmundio87/Notepad-Android/i
 
 You can assign yourself to an existing open issue, or if you have an interesting idea you can create your own!
 
-Using [Huboard](https://huboard.com/elmundio87/Notepad-Android) you can easily see what everyone else is working on.
+Using [Huboard](https://huboard.com/elmundio87/Notepad-Android) you can easily see what everyone else is working on and assign yourself to an issue (drag your picture onto the task card).
