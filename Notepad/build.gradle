@@ -1,15 +1,44 @@
+ext{
+    cal = Calendar.instance
+    Year = cal.get(Calendar.YEAR)
+    Month = cal.get(Calendar.MONTH) + 1
+    Day = cal.get(Calendar.DATE)
+    Hour = cal.get(Calendar.HOUR_OF_DAY)
+    Minute = cal.get(Calendar.MINUTE)
+    Second = cal.get(Calendar.SECOND)
+    DateString = "${Year}${Month}${Day}${Hour}${Minute}${Second}"
+}
+
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'http://jcenter.bintray.com' }
+        maven { url 'https://oss.sonatype.org/content/groups/public/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
+        classpath 'org.ajoberstar:gradle-git:0.7.0-SNAPSHOT'
     }
 }
+apply plugin: 'bintray'
 apply plugin: 'android'
+apply plugin: 'grgit'
+
+def gitRepo = grgit.repo('..')
+def gitHash = "${gitRepo.history.log().find().abbreviatedId}"
+version = "${ext.DateString}-${gitHash}"
 
 repositories {
     mavenCentral()
+}
+
+artifacts {
+    archives file: file("build/distributions/Android-Notepad-${version}.zip")
+}
+
+configurations {
+    archives
 }
 
 android {
@@ -19,6 +48,27 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 18
+    }
+}
+
+build << {
+    task(apkZip, type: Zip) {
+        from buildDir
+        include 'apk/*'
+        baseName = "Android-Notepad"
+    }.execute()
+}
+
+bintray {
+    user = 'elmundio87'
+    key = 'e330bc3997d7a77303e392d5e386655999bf2e1de05ea949e2b8f3bdbe7b1cb8'
+    configurations = ['archives']
+    pkg {
+        repo = 'Android-Notepad'
+        name = 'Android-Notepad'
+        desc = 'a fantastic package, indeed!'
+        licenses = ['MIT']
+        labels = ['gear', 'gore', 'gorilla']
     }
 }
 
