@@ -1,13 +1,4 @@
-ext{
-    cal = Calendar.instance
-    Year = cal.get(Calendar.YEAR)
-    Month = cal.get(Calendar.MONTH) + 1
-    Day = cal.get(Calendar.DATE)
-    Hour = cal.get(Calendar.HOUR_OF_DAY)
-    Minute = cal.get(Calendar.MINUTE)
-    Second = cal.get(Calendar.SECOND)
-    DateString = "${Year}${Month}${Day}${Hour}${Minute}${Second}"
-}
+
 
 buildscript {
     repositories {
@@ -18,16 +9,11 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:0.6.+'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
-        classpath 'org.ajoberstar:gradle-git:0.7.0-SNAPSHOT'
+
     }
 }
 apply plugin: 'bintray'
 apply plugin: 'android'
-apply plugin: 'grgit'
-
-def gitRepo = grgit.repo('..')
-def gitHash = "${gitRepo.history.log().find().abbreviatedId}"
-version = "${ext.DateString}-${gitHash}"
 
 repositories {
     mavenCentral()
@@ -68,7 +54,7 @@ bintray {
         name = 'Android-Notepad'
         desc = 'a fantastic package, indeed!'
         licenses = ['MIT']
-        labels = ['gear', 'gore', 'gorilla']
+        labels = ['notepad']
     }
 }
 

@@ -33,4 +33,4 @@ before_install:
   - emulator -avd test -no-skin -no-audio -no-window &
 script:
   - echo $TRAVIS_BUILD_DIR
-  - TERM=dumb ./gradlew
+  - TERM=dumb ./gradlew build bintrayUpload
