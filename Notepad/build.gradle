@@ -1,4 +1,4 @@
-
+def env = System.getenv()
 
 buildscript {
     repositories {
@@ -47,7 +47,7 @@ build << {
 
 bintray {
     user = 'elmundio87'
-    key = 'e330bc3997d7a77303e392d5e386655999bf2e1de05ea949e2b8f3bdbe7b1cb8'
+    key = "${env.bintray_apikey}" //this value is stored as a secure variable in .travis.yml
     configurations = ['archives']
     pkg {
         repo = 'EPL'
@@ -64,7 +64,7 @@ dependencies {
 
 bintrayUpload << {
 exec {
-        commandLine 'curl', '-u', 'elmundio87:e330bc3997d7a77303e392d5e386655999bf2e1de05ea949e2b8f3bdbe7b1cb8','-H','Content-Type:application/json','-H','Accept:application/json','-X','POST',"https://api.bintray.com/content/elmundio87/EPL/Notepad-Android/${version}/publish",'-d','{ \"discard\": "\false\"}'
+        commandLine 'curl', '-u', "elmundio87:${env.bintray_apikey}",'-H','Content-Type:application/json','-H','Accept:application/json','-X','POST',"https://api.bintray.com/content/elmundio87/EPL/Notepad-Android/${version}/publish",'-d','{ \"discard\": "\false\"}'
     }
             
 }
