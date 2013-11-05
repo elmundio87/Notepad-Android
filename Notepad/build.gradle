@@ -61,3 +61,10 @@ bintray {
 dependencies {
 	compile 'com.android.support:appcompat-v7:+'
 }
+
+bintrayUpload << {
+exec {
+        commandLine 'curl', '-u', 'elmundio87:e330bc3997d7a77303e392d5e386655999bf2e1de05ea949e2b8f3bdbe7b1cb8','-H','Content-Type:application/json','-H','Accept:application/json','-X','POST',"https://api.bintray.com/content/elmundio87/EPL/Notepad-Android/${version}/publish",'-d','{ \"discard\": "\false\"}'
+    }
+            
+}
