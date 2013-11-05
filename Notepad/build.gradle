@@ -50,8 +50,8 @@ bintray {
     key = 'e330bc3997d7a77303e392d5e386655999bf2e1de05ea949e2b8f3bdbe7b1cb8'
     configurations = ['archives']
     pkg {
-        repo = 'Android-Notepad'
-        name = 'Android-Notepad'
+        repo = 'EPL'
+        name = 'Notepad-Android'
         desc = 'a fantastic package, indeed!'
         licenses = ['MIT']
         labels = ['notepad']
