@@ -14,6 +14,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.notepad.FileUtil.PlaintextNoteFS;
+import com.example.notepad.note.PlaintextNote;
+
 public class MainActivity extends ActionBarActivity {
 
     //the edit text that is the notepad
@@ -46,13 +49,12 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void doSave() {
-        Toast.makeText(this, "This doesn't work yet",Toast.LENGTH_LONG).show();
 
-        //String theText = mainText.getText().toString();
-        //do something with the text like save it...
+        String theText = mainText.getText().toString();
+        PlaintextNote ptn  = new PlaintextNote(theText);
 
-        //this was to check it was getting the right text... it was :)
-        //Toast.makeText(this, theText,Toast.LENGTH_LONG).show();
+        PlaintextNoteFS.SaveFile(ptn,"hello.txt",this);
+
     }
 
 
